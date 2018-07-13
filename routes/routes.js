@@ -21,7 +21,7 @@ module.exports = function (app) {
     });
 
     // scrape website
-    app.get("/", function (req, res) {
+    app.get("/scrape", function (req, res) {
         db.Article.find({}, function (err, dbArticle) {
             axios.get("http://www.nintendolife.com/reviews")
                 .then((res) => {

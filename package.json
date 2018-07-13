@@ -20,5 +20,13 @@
   },
   "keywords": [],
   "author": "Isaac Simental-Starr",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bunnyster43/scraper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Bunnyster43/scraper/issues"
+  },
+  "homepage": "https://github.com/Bunnyster43/scraper#readme"
 }
