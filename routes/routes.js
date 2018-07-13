@@ -20,68 +20,68 @@ module.exports = function (app) {
             });
     });
 
-    // // scrape website
-    // app.get("/scrape", function (req, res) {
-    //     db.Article.find({}, function (err, dbArticle) {
-    //         axios.get("http://www.nintendolife.com/reviews")
-    //             .then((res) => {
-    //                 // do something
-    //                 let $ = cheerio.load(response.data);
-    //                 let counter = 0;
-    //                 $("div.cols extended").each(function (i, element) {
-    //                     result.title = $(element).children().text();
-    //                     result.title = $(element).children().media();
-    //                     result.date = $(element).children().date();
-    //                     result.link = $(element).children().attr("href");
-    //                     result.summary = $(element).children().text();
-    //                     let duplicate = false;
-    //                     for (let i = 0; i < dbArticle.length; i++) {
-    //                         if (dbArticle[i].title === result.title) {
-    //                             duplicate = true;
-    //                             break;
-    //                         }
-    //                     }
-    //                     if (!duplicate && result.title && result.link && result.summary) {
-    //                         db.Article.create(result);
-    //                         counter++;
-    //                     }
-    //                 });
-    //                 res.json({
-    //                     count: counter
-    //                 })
-    //                 return axios.get("https://www.avclub.com/c/review/movie-review");
-    //             })
-    //             .then((res) => {
-    //                 // do something
-    //                 let $ = cheerio.load(response.data);
-    //                 let counter = 0;
-    //                 $("div.main__content js_main__content").each(function (i, element) {
-    //                     result.title = $(element).children().text();
-    //                     result.title = $(element).children().media();
-    //                     result.date = $(element).children().date();
-    //                     result.link = $(element).children().attr("href");
-    //                     result.summary = $(element).children().text();
-    //                     let duplicate = false;
-    //                     for (let i = 0; i < dbArticle.length; i++) {
-    //                         if (dbArticle[i].title === result.title) {
-    //                             duplicate = true;
-    //                             break;
-    //                         }
-    //                     }
-    //                     if (!duplicate && result.title && result.link && result.summary) {
-    //                         db.Article.create(result);
-    //                         counter++;
-    //                     }
-    //                 });
-    //                 res.json({
-    //                     count: counter
-    //                 })
-    //             })
-    //             .catch((err) => {
-    //                 // handle err
-    //             });
-    //     })
-    // })
+    // scrape website
+    app.get("/scrape", function (req, res) {
+        db.Article.find({}, function (err, dbArticle) {
+            axios.get("http://www.nintendolife.com/reviews")
+                .then((res) => {
+                    // do something
+                    let $ = cheerio.load(response.data);
+                    let counter = 0;
+                    $("div.cols extended").each(function (i, element) {
+                        result.title = $(element).children().text();
+                        result.title = $(element).children().media();
+                        result.date = $(element).children().date();
+                        result.link = $(element).children().attr("href");
+                        result.summary = $(element).children().text();
+                        let duplicate = false;
+                        for (let i = 0; i < dbArticle.length; i++) {
+                            if (dbArticle[i].title === result.title) {
+                                duplicate = true;
+                                break;
+                            }
+                        }
+                        if (!duplicate && result.title && result.link && result.summary) {
+                            db.Article.create(result);
+                            counter++;
+                        }
+                    });
+                    res.json({
+                        count: counter
+                    })
+                    return axios.get("https://www.avclub.com/c/review/movie-review");
+                })
+                .then((res) => {
+                    // do something
+                    let $ = cheerio.load(response.data);
+                    let counter = 0;
+                    $("div.main__content js_main__content").each(function (i, element) {
+                        result.title = $(element).children().text();
+                        result.title = $(element).children().media();
+                        result.date = $(element).children().date();
+                        result.link = $(element).children().attr("href");
+                        result.summary = $(element).children().text();
+                        let duplicate = false;
+                        for (let i = 0; i < dbArticle.length; i++) {
+                            if (dbArticle[i].title === result.title) {
+                                duplicate = true;
+                                break;
+                            }
+                        }
+                        if (!duplicate && result.title && result.link && result.summary) {
+                            db.Article.create(result);
+                            counter++;
+                        }
+                    });
+                    res.json({
+                        count: counter
+                    })
+                })
+                .catch((err) => {
+                    // handle err
+                });
+        })
+    })
 
 
     // save
